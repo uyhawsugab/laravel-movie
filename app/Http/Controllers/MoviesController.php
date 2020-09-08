@@ -16,7 +16,9 @@ class MoviesController extends Controller
     {
         $popularMovies = Http::withToken(config('services.tmdb.token'))
             ->get('https://api.themoviedb.org/3/movie/popular')
-            ->json()['results'];
+            ->json();
+
+        dd($popularMovies);
 
         $genresArray = Http::withToken(config('services.tmdb.token'))
             ->get('https://api.themoviedb.org/3/genre/movie/list')
