@@ -50,11 +50,11 @@
                         <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">
                             <div class="bg-gray-900 rounded">
                                 <div class="flex justify-end pr-4 pt-2">
-                                    <button class="text-3xl loading-none hover:text-gray-300" @click="isOpen = false">&times;</button>
+                                    <button class="text-3xl loading-none hover:text-gray-300" @click="isOpen = false" @keydown.escape.window="isOpen = false">&times;</button>
                                 </div>
                                 <div class="modal-body px-8 py-8">
                                     <div class="responsive-container overflow-hidden relative" style="padding-top: 56.25%">
-                                        <iframe width="560" height="315" class="responsive-iframe absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/{{ $movie['videos']['results'][0]['key'] }}" style="border:0;" allow="autoplay: encrypted-media" allowfullscreen></iframe>
+                                        <iframe width="560" height="315" class="responsive-iframe absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/{{ $movie['videos']['results'][0]['key'] }}" style="border:0;" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                 @foreach ($movie['images']['backdrops'] as $image)
                     @if ($loop->index < 9)         
                         <div class="mt-8">
-                            <a href="#" @click.prevent = "isOpen = true image='{{ 'https://image.tmdb.org/t/p/w500/'.$image['file_path'] }}'">
+                            <a href="#" @click.prevent = "isOpen = true, image='{{ 'https://image.tmdb.org/t/p/original/'.$image['file_path'] }}'">
                                 <img src="{{ 'https://image.tmdb.org/t/p/w500/'.$image['file_path'] }}" alt="" class="hover:opacity-75 transition ease-in-out duration-150">
                             </a>
                         </div>
@@ -108,12 +108,10 @@
                 <div class="container mx-auto lg:px-32 rounded-lg overflow-y-auto">
                     <div class="bg-gray-900 rounded">
                         <div class="flex justify-end pr-4 pt-2">
-                            <button class="text-3xl loading-none hover:text-gray-300" @click = "isOpen = false">&times;</button>
+                            <button class="text-3xl loading-none hover:text-gray-300" @click = "isOpen = false" @keydown.escape.window="isOpen = false">&times;</button>
                         </div>
                         <div class="modal-body px-8 py-8">
-                                <div class="responsive-container overflow-hidden relative" style="padding-top: 56.25%">
-                                <iframe width="560" height="315" class="responsive-iframe absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/{{ $movie['videos']['results'][0]['key'] }}" style="border:0;" allow="autoplay: encrypted-media" allowfullscreen></iframe>
-                            </div>
+                                <img :src="image" alt="poster">
                         </div>
                     </div>
                 </div>
