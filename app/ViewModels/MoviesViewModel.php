@@ -33,6 +33,8 @@ class MoviesViewModel extends ViewModel
                 'vote_average' => $movie['vote_average'] *10 .'%',
                 'release_date' => Carbon::parse($movie['release_date'])->format('M d, Y'),
                 'genres' => $genresFormat,
+            ])->only([
+                'poster_path', 'id', 'genre_ids', 'title', 'vote_average', 'overview', 'release_date', 'genres',
             ]);
         });
     }
